@@ -5,13 +5,18 @@ import { Component } from '@angular/core'
   styleUrls: ['app.component.scss'],
   templateUrl: `
     <div class = "app">
-      {{ title }}
+      <h1> {{ title }} </h1>
+      <h1 [innerHTML]="title"></h1>
+      <img [src]="logo">
+      <input type = "text" [value] = "name">
     </div>
   `
 })
 
 export class AppComponent {
   title: string
+  name: string = "MemeMan"
+  logo: string = 'img/lmao.png'
   constructor() {
     this.title = 'Ultimate Angular'
   }
