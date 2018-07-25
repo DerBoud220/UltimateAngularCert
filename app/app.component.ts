@@ -1,30 +1,69 @@
 import { Component } from '@angular/core'
 
+interface Passenger {
+  id: number,
+  fullname: string,
+  checkedIn: boolean
+}
+
 @Component({
   selector: 'app-root',
   styleUrls: ['app.component.scss'],
   templateUrl: `
     <div class = "app">
-      <button (click) = "handleClick(username.value)">
-        Get Value
-      </button>
-      <input type = "text" #username>
-      <div> {{ name }} </div>
+      <h3>Airline Passengers</h3>
+      <ul>
+        <li *ngFor="let passenger of passengers; let i = index;">
+          <span class = "status"
+          [class.checked-in]="passenger.checkedIn"
+          ></span>
+          {{ i }}: {{ passenger.fullname }}
+        </li>
+      </ul>
+      <h3>Airline Passengers</h3>
+      <ul>
+        <li *ngFor="let passenger of passengers; let i = index;">
+          <span class = "status"
+          [style.backgroundColor]="(passenger.checkedIn ? '#2ecc71':'#c0392b')"
+          ></span>
+          {{ i }}: {{ passenger.fullname }}
+        </li>
+      </ul>
     </div>
   `
 })
 
 export class AppComponent {
-  title: string
-  name: string = "MemeMan"
-  logo: string = 'img/lmao.png'
+  passengers: Passenger[] = [{
+    id:1,
+    fullname: 'Stephen',
+    checkedIn: true
+  }, {
+    id: 2,
+    fullname: 'Rose',
+    checkedIn: false
+  }, {
+    id: 3,
+    fullname: 'James',
+    checkedIn: true
+  }, {
+    id: 4,
+    fullname: 'Yeet',
+    checkedIn: false
+  }]
+  // title: string
+  // name: string = ""
+  // logo: string = 'img/lmao.png'
 
-  handleClick(value: string) {
-    console.log(value)
-    this.name = value
-  }
+  // handleChange(value: string) {
+  //   this.name = value;
+  // }
+  // handleClick(value: string) {
+  //   console.log(value)
+  //   this.name = value
+  // }
 
-  constructor() {
-    this.title = 'Ultimate Angular'
-  }
+  // constructor() {
+  //   this.title = 'Ultimate Angular'
+  // }
 }
